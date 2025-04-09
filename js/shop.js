@@ -100,6 +100,12 @@ function buy(id) {
 
 // Exercise 2
 function cleanCart() {
+    cart = []
+    let cartList = document.getElementById('cart_list')
+    let totalPrice = document.getElementById('total_price')
+
+    cartList.innerHTML = 'Empty cart'
+    totalPrice.textContent = '0'
 
 }
 
