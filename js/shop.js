@@ -76,8 +76,26 @@ var total = 0;
 
 // Exercise 1
 function buy(id) {
-    // 1. Loop for to the array products to get the item to add to cart
-    // 2. Add found product to the cart array
+
+    let found = false
+
+    cart.forEach(product => {
+        if(product.id === id){
+            product.quantity += 1
+            found = true
+        }
+    })
+
+    if(!found) {
+        
+        for(let i = 0; i < products.length; i++) {
+            if(products[i].id === id){
+                const newProduct = { ...products[i], quantity: 1 }
+                cart.push(newProduct)
+                break
+            }
+        }
+    }
 }
 
 // Exercise 2
