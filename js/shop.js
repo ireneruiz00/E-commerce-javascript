@@ -106,7 +106,8 @@ function cleanCart() {
 
     cartList.innerHTML = 'Empty cart'
     totalPrice.textContent = '0'
-
+    
+    console.log(cart)
 }
 
 // Exercise 3
