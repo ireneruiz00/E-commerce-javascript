@@ -112,6 +112,11 @@ function cleanCart() {
 
 // Exercise 3
 function calculateTotal() {
+    let total = 0
+    for(let i = 0; i < cart.length; i++){
+        total += cart[i].price * cart[i].quantity
+    }
+    return total
     // Calculate total price of the cart using the "cartList" array
 }
 
