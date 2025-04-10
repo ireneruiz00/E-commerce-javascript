@@ -122,7 +122,9 @@ function applyPromotionsCart() {
     }
 
     return subtotalWithDiscount
+
 }
+
 
 // Exercise 5
 function printCart() {
