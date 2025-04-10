@@ -96,6 +96,9 @@ function buy(id) {
             }
         }
     }
+
+    printCart()
+    applyPromotionsCart()
 }
 
 // Exercise 2
@@ -140,7 +143,27 @@ function applyPromotionsCart() {
 
 // Exercise 5
 function printCart() {
-    // Fill the shopping cart modal manipulating the shopping cart dom
+    const cartList = document.getElementById("cart_list")
+    const totalPrice = document.getElementById("total_price")
+
+    if(cart.length === 0) { 
+        cleanCart() 
+    } else {
+
+        cartList.innerHTML = ''
+
+        for(let i = 0; i < cart.length; i++){
+            cartList.innerHTML +=
+                `<tr>
+                    <th scope="row">${cart[i].name}</th>
+                    <td>${cart[i].price.toFixed(2)}</td>
+                    <td>${cart[i].quantity}</td>
+                    <td>${(cart[i].price * cart[i].quantity).toFixed(2)}</td>
+                </tr>`
+            
+            totalPrice.textContent = calculateTotal().toString()
+        }
+    }
 }
 
 
