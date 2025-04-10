@@ -111,6 +111,17 @@ function calculateTotal() {
 // Exercise 4
 function applyPromotionsCart() {
     // Apply promotions to each item in the array "cart"
+    subtotalWithDiscount = 0
+    
+    for(let i = 0; i < cart.length; i++){
+        if(cart[i].id === 1 && cart[i].quantity >= 3){
+            subtotalWithDiscount += cart[i].price * cart[i].quantity * 0.8
+        } else if (cart[i].id === 3 && cart[i].quantity >= 10) {
+            subtotalWithDiscount += cart[i].price * cart[i].quantity * 0.7
+        }
+    }
+
+    return subtotalWithDiscount
 }
 
 // Exercise 5
