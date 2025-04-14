@@ -115,29 +115,33 @@ function cleanCart() {
 
 // Exercise 3
 function calculateTotal() {
+    applyPromotionsCart()
     let total = 0
+   
     for(let i = 0; i < cart.length; i++){
-        total += cart[i].price * cart[i].quantity
+        if (cart[i].totalWithDiscount !== undefined) {
+            total += cart[i].totalWithDiscount;
+        } else {
+            total += cart[i].price * cart[i].quantity;
+        }
     }
+
     return total
-    // Calculate total price of the cart using the "cartList" array
 }
 
 // Exercise 4
 function applyPromotionsCart() {
-    // Apply promotions to each item in the array "cart"
-    subtotalWithDiscount = 0
     
     for(let i = 0; i < cart.length; i++){
-        if(cart[i].id === 1 && cart[i].quantity >= 3){
-            subtotalWithDiscount += cart[i].price * cart[i].quantity * 0.8
-        } else if (cart[i].id === 3 && cart[i].quantity >= 10) {
-            subtotalWithDiscount += cart[i].price * cart[i].quantity * 0.7
+        const product = cart[i]
+        if (product.id === 1 && product.quantity >= 3) {
+            product.totalWithDiscount = product.price * product.quantity * 0.8;
+        } else if (product.id === 3 && product.quantity >= 10) {
+            product.totalWithDiscount = product.price * product.quantity * 0.7;
+        } else {
+            product.totalWithDiscount = product.price * product.quantity;
         }
     }
-
-    return subtotalWithDiscount
-
 }
 
 
@@ -153,18 +157,22 @@ function printCart() {
         cartList.innerHTML = ''
 
         for(let i = 0; i < cart.length; i++){
+            const product = cart[i];
+            const subtotal = product.totalWithDiscount !== undefined ? product.totalWithDiscount : product.price * product.quantity
+
             cartList.innerHTML +=
                 `<tr>
-                    <th scope="row">${cart[i].name}</th>
-                    <td>${cart[i].price.toFixed(2)}</td>
-                    <td>${cart[i].quantity}</td>
-                    <td>${(cart[i].price * cart[i].quantity).toFixed(2)}</td>
+                    <th scope="row">${product.name}</th>
+                    <td>${product.price.toFixed(2)}</td>
+                    <td>${product.quantity}</td>
+                    <td>${subtotal.toFixed(2)}</td>
                 </tr>`
-            
-            totalPrice.textContent = calculateTotal().toString()
         }
+            
+        totalPrice.textContent = calculateTotal().toFixed(2)
     }
 }
+    
 
 
 // ** Nivell II **
