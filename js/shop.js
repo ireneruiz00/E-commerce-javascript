@@ -77,6 +77,7 @@ var total = 0;
 // Exercise 1
 function buy(id) {
 
+    let counter = document.getElementById('count_product')
     let found = false
 
     cart.forEach(product => {
@@ -97,6 +98,9 @@ function buy(id) {
         }
     }
 
+    let currentCount = parseInt(counter.textContent)
+    counter.textContent = currentCount + 1
+
     printCart()
     applyPromotionsCart()
 }
@@ -106,9 +110,11 @@ function cleanCart() {
     cart = []
     let cartList = document.getElementById('cart_list')
     let totalPrice = document.getElementById('total_price')
+    let counter = document.getElementById('count_product')
 
     cartList.innerHTML = 'Empty cart'
     totalPrice.textContent = '0'
+    counter.textContent = '0'
     
     console.log(cart)
 }
@@ -138,8 +144,6 @@ function applyPromotionsCart() {
             product.totalWithDiscount = product.price * product.quantity * 0.8;
         } else if (product.id === 3 && product.quantity >= 10) {
             product.totalWithDiscount = product.price * product.quantity * 0.7;
-        } else {
-            product.totalWithDiscount = product.price * product.quantity;
         }
     }
 }
